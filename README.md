@@ -2,6 +2,7 @@ Worst readme ever, deal with it....for now.
 
 Eventaully this readme will walk through setting up logstash to log multiple users apex logs from salesforce so you don't miss a drop.
 
+![Screen Shot](http://i.imgur.com/PHZCHjE.png)
 ![Screen Shot](http://i.imgur.com/IjSpVYS.png)
 ![Screen Shot](http://i.imgur.com/oFKQRyj.png)
 
