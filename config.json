@@ -1,0 +1,10 @@
+{
+    "url": "https://login.salesforce.com",
+    "username": "<salesforce username>",
+    "password": "<salesforce password>",
+    "token": "<salsforce security token>",
+    "cron_schedule_add_debug_users": "*/59 * * * *",
+    "reset_all_users_seconds": 5,
+    "ask_for_logs_seconds": 10,
+    "nodejs_port": 6200
+}
