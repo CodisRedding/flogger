@@ -1,0 +1,47 @@
+<project name="Salesforce Uploader" default="deploy" basedir="." xmlns:sf="antlib:com.salesforce">
+
+    <target name="deploy" description="deploy metadata">
+        <!-- Delete the deploy zip file. -->
+        <delete file="deploy.zip" />
+
+        <!-- Create zip file for deployment -->
+        <zip destfile="deploy.zip" basedir="${sf.unpackaged}"/>
+
+        <!-- Salesforce deploy task. -->    
+        <sf:deploy username="${sf.username}" 
+                   password="${sf.password}" 
+                   serverurl="${sf.serverurl}" 
+                   zipFile="deploy.zip"
+                   pollWaitMillis="10000"
+                   maxPoll="200"
+                   runAllTests="true"
+                   allowMissingFiles="true"/>
+
+        <!-- Delete the deploy zip file. -->
+        <delete file="deploy.zip" />
+    </target>
+
+    <target name="retrieve">
+
+        <!-- Make a new temp retrieve dir. -->
+        <mkdir dir="${sf.temp}"/>
+
+        <!-- Salesforce ant retrieve task. -->  
+        <sf:retrieve username="${sf.username}"
+                   password="${sf.password}"
+                   serverurl="${sf.serverurl}"
+                   retrieveTarget="${sf.temp}"
+                   unpackaged="${sf.unpackaged}/package.xml"/>
+
+        <!-- Copy all metadata from temp retrieve dir to src dir. -->
+        <copy todir="${sf.unpackaged}">
+            <fileset dir="${sf.temp}" />
+        </copy>
+
+        <!-- Remove temp retrieve dir. -->  
+        <delete includeEmptyDirs="true">
+            <fileset dir="${sf.temp}"/>
+        </delete>
+    </target>
+</project>
+
